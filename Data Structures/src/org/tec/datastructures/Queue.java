@@ -38,12 +38,20 @@ public class Queue<T extends Comparable<T>>{
 	        aux.setNext(n);
 	    }
 	}
+
+	//No estoy seguro de si funciona/////////////
+	public void pop(){
+		if (!isEmpty()) {
+			start = start.getNext();
+			length--;
+		}
+	}
 	
 	public T peek() throws Exception{
 	    if(!isEmpty()){
 	        return start.getDataT();
 	    } else {
-	        throw new Exception("Error: Empty Stack");
+	        throw new Exception("Error: Empty queue");
 	    }
 	}
 	

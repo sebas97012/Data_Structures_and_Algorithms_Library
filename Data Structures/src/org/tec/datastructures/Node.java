@@ -1,29 +1,26 @@
 package org.tec.datastructures;
 
-
-
-/**
- * Created by Arturo on 20/3/2017.
- */
 public class Node<T extends Comparable<T>>{
-    private T dataT;
+    private T data;
     private Node<T> next;
+    private Node<T> previous;
 
     public Node(){
-    	
+
     }
-    
+
     public Node(T data){
-        this.dataT = data;
+        this.data = data;
         this.next = null;
+        this.previous = null;
     }
 
     public T getDataT() {
-        return this.dataT;
+        return this.data;
     }
 
     public void setDataT(T dataT) {
-        this.dataT = dataT;
+        this.data = dataT;
     }
 
     public Node<T> getNext() {
@@ -32,6 +29,14 @@ public class Node<T extends Comparable<T>>{
 
     public void setNext(Node<T> next) {
         this.next = next;
+    }
+
+    public Node<T> getPrevious(){
+        return this.previous;
+    }
+
+    public void setPrevious(Node<T> previous){
+        this.previous = previous;
     }
 }
 

@@ -43,7 +43,7 @@ public class Stack<T extends Comparable<T>>{
         if(!isEmpty()){
             return start.getDataT();
         } else {
-            throw new Exception("Error");
+            throw new Exception("Error: Empty stack");
         }
     }
 

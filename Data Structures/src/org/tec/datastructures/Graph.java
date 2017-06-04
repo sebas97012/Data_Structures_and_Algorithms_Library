@@ -1,26 +1,23 @@
 package org.tec.datastructures;
 
-import java.util.Arrays;
-import java.util.Iterator;
-
 public class Graph {
     private int row;
     private int col;
     private int nodesIn;
     private int INF = 99999999;     //
     private int[][] matrix;
-    private NodoGrafo[] arrayReferencia;    //
+    private GraphNode[] arrayReferencia;    //
 
     public Graph(int nodes){
         matrix = new int[nodes][nodes];
-        arrayReferencia = new NodoGrafo[nodes];
+        arrayReferencia = new GraphNode[nodes];
         this.col = nodes;
         this.row = nodes;
         this.nodesIn = 0;
     }
 
     public void addNode(Comparable nodeData){
-        NodoGrafo newNode = new NodoGrafo(nodeData);
+        GraphNode newNode = new GraphNode(nodeData);
 
         if(nodesIn == row){
             System.out.println("Error");
@@ -38,11 +35,11 @@ public class Graph {
         int y = 0;
         int Node1Pos = x;
 
-        while(arrayReferencia[x].getValor().compareTo(ele1) != 0){
+        while(arrayReferencia[x].getData().compareTo(ele1) != 0){
             x += 1;
         }
 
-        while(arrayReferencia[y].getValor().compareTo(ele2)!=0){
+        while(arrayReferencia[y].getData().compareTo(ele2)!=0){
             y+=1;
         }
 
@@ -56,11 +53,11 @@ public class Graph {
         int y = 0;
         int Node1Pos = x;
 
-        while(arrayReferencia[x].getValor().compareTo(ele1)!=0){
+        while(arrayReferencia[x].getData().compareTo(ele1)!=0){
             x += 1;
         }
 
-        while(arrayReferencia[y].getValor().compareTo(ele2)!=0){
+        while(arrayReferencia[y].getData().compareTo(ele2)!=0){
             y += 1;
         }
 
@@ -75,19 +72,19 @@ public class Graph {
         Queue queueWidth = new Queue();
         int x = 0;
 
-        while(arrayReferencia[x].getValor().compareTo(firstNodeData) != 0){
+        while(arrayReferencia[x].getData().compareTo(firstNodeData) != 0){
             x+=1;
         }
 
         visited[x] =true;
-        queueWidth.enqueue(arrayReferencia[x].getValor());
+        queueWidth.enqueue(arrayReferencia[x].getData());
 
         while(queueWidth.getTope() != null){      //Falta el método///////////////
             firstNodeData = (int) queueWidth.pop().getT();   //Falta el método///////////////
             x = 0;
             int y = 0;
 
-            while(arrayReferencia[x].getValor().compareTo(firstNodeData) != 0){
+            while(arrayReferencia[x].getData().compareTo(firstNodeData) != 0){
                 x+=1;
             }
 
@@ -97,7 +94,7 @@ public class Graph {
             while(y <= col-1){
                 if(matrix[x][y] != 0){
                     if(!visited[y]){
-                        queueWidth.enqueue(arrayReferencia[y].getValor());
+                        queueWidth.enqueue(arrayReferencia[y].getData());
                         visited[y] = true;
                         y++;
                     }
@@ -120,18 +117,18 @@ public class Graph {
         Stack stackHeigth = new Stack();
         int x = 0;
 
-        while(arrayReferencia[x].getValor().compareTo(firsNodeData)!=0){
+        while(arrayReferencia[x].getData().compareTo(firsNodeData)!=0){
             x+=1;
         }
 
         visited[x] =true;
-        stackHeigth.push(arrayReferencia[x].getValor());
+        stackHeigth.push(arrayReferencia[x].getData());
         while(stackHeigth.getTope()!=null){
             firsNodeData = (int) stackHeigth.pop().getT();
             x = 0;
             int y = 0;
 
-            while(arrayReferencia[x].getValor().compareTo(firsNodeData)!=0){
+            while(arrayReferencia[x].getData().compareTo(firsNodeData)!=0){
                 x+=1;
             }
 
@@ -141,7 +138,7 @@ public class Graph {
             while(y <= col-1){
                 if(matrix[x][y] != 0){
                     if(!visited[y]){
-                        stackHeigth.push(arrayReferencia[y].getValor());
+                        stackHeigth.push(arrayReferencia[y].getData());
                         visited[y] = true;
                         y++;
                     }
@@ -167,7 +164,7 @@ public class Graph {
             visited[x] = false;
         }
 
-        while(arrayReferencia[x2].getValor().compareTo(firstNodeData) != 0){
+        while(arrayReferencia[x2].getData().compareTo(firstNodeData) != 0){
             x2 += 1;
         }
 
@@ -298,50 +295,4 @@ public class Graph {
         }
         return minIndex;
     }
-
-	/*
-    public static void main(String[] args) {
-        Graph prueba  = new Graph(6);
-
-        prueba.adherirNodo(1);
-        prueba.adherirNodo(2);
-        prueba.adherirNodo(3);
-        prueba.adherirNodo(4);
-        prueba.adherirNodo(5);
-        prueba.adherirNodo(6);
-        /*
-        prueba.adherirConexionDirigda(1,2,2);
-        prueba.adherirConexionDirigda(1,6,4);
-        prueba.adherirConexionDirigda(4,1,6);
-        prueba.adherirConexionDirigda(4,3,9);
-        prueba.adherirConexionDirigda(3,1,12);
-        prueba.adherirConexionDirigda(3,6,14);
-        prueba.adherirConexionDirigda(6,2,10);
-        prueba.adherirConexionDirigda(6,5,19);
-        prueba.adherirConexionDirigda(5,4,22);
-        System.out.println(prueba.Warshall(prueba.matriz)[0][0]);
-        System.out.println(prueba.Warshall(prueba.matriz)[0][1]);
-        System.out.println(prueba.Warshall(prueba.matriz)[0][2]);
-        System.out.println(prueba.Warshall(prueba.matriz)[0][3]);
-        System.out.println(prueba.Warshall(prueba.matriz)[0][4]);
-        System.out.println(prueba.Warshall(prueba.matriz)[0][5]);
-
-        prueba.adherirConexionNoDirigida(1,2,2);
-        prueba.adherirConexionNoDirigida(1,3,2);
-        prueba.adherirConexionNoDirigida(1,4,3);
-        prueba.adherirConexionNoDirigida(1,5,1);
-        prueba.adherirConexionNoDirigida(2,3,2);
-        prueba.adherirConexionNoDirigida(2,4,2);
-        prueba.adherirConexionNoDirigida(2,6,1);
-        prueba.adherirConexionNoDirigida(3,5,3);
-        prueba.adherirConexionNoDirigida(4,6,1);
-        prueba.adherirConexionNoDirigida(5,6,1);
-        System.out.println(prueba.Prim(prueba.matriz)[0]);
-        System.out.println(prueba.Prim(prueba.matriz)[1]);
-        System.out.println(prueba.Prim(prueba.matriz)[2]);
-        System.out.println(prueba.Prim(prueba.matriz)[3]);
-        System.out.println(prueba.Prim(prueba.matriz)[4]);
-        System.out.println(prueba.Prim(prueba.matriz)[5]);
-    }
-	*/
 }

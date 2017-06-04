@@ -96,7 +96,7 @@ public class DoubleList<T extends Comparable<T>> {
 		Node<T> current = head;
 
 		while (current.getNext() != null){
-			if (current.getData() == data){
+			if (current.getDataT() == data){
 					return true;
 			}else{
 				current = current.getNext();
@@ -112,10 +112,10 @@ public class DoubleList<T extends Comparable<T>> {
 
 		while( current.getNext() != null )
 		{
-			datos += current.getData() + "\n";
+			datos += current.getDataT() + "\n";
 			current = current.getNext();
 		}
-		datos += current.getData() + "\n";
+		datos += current.getDataT() + "\n";
 		return datos;
 	}
 	
