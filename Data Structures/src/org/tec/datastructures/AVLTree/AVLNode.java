@@ -1,9 +1,5 @@
 package org.tec.datastructures.AVLTree;
 
-
-/**
- * Created by Arturo on 7/5/2017.
- */
 public class AVLNode<T extends Comparable<T>> {
     private T data;
     private int balanceFactor;

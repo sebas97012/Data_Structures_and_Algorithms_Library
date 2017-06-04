@@ -4,7 +4,6 @@ public class BTree<Key extends Comparable<Key>> {
     // max children per B-tree node = order-1
     // (must be even and greater than 2)
     private int order;
-
     private Node root;       // root of the B-tree
     private int height;      // height of the B-tree
     private int n;           // number of key-value pairs in the B-tree

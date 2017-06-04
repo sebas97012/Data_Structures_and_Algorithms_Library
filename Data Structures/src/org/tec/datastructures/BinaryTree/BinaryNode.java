@@ -1,14 +1,11 @@
 package org.tec.datastructures.BinaryTree;
 
-
-/**
- * Created by Arturo on 22/4/2017.
- */
 public class BinaryNode<T extends Comparable<T>>{
     private T data;
     private BinaryNode left;
     private BinaryNode right;
 
+    /////////////////////////
     public BinaryNode(){
     	
     }

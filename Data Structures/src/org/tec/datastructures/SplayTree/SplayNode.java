@@ -1,10 +1,5 @@
 package org.tec.datastructures.SplayTree;
 
-
-
-/**
- * Created by Arturo on 8/5/2017.
- */
 public class SplayNode<T extends Comparable>{
     private T data;
     private SplayNode left;
@@ -24,6 +19,7 @@ public class SplayNode<T extends Comparable>{
      * @param left Hijo izquierdo del nodo
      * @param right Hijo derecho del nodo
      */
+
     public SplayNode(T data, SplayNode left, SplayNode right){
         this.data = data;
         this.left = left;

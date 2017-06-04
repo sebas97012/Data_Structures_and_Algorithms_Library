@@ -1,8 +1,5 @@
 package org.tec.datastructures.AVLTree;
 
-/**
- * Created by Arturo on 7/5/2017.
- */
 public class AVLTree<T extends Comparable<T>> {
     private AVLNode root;
 
@@ -62,12 +59,12 @@ public class AVLTree<T extends Comparable<T>> {
     private AVLNode getElement(T element, AVLNode node){
         if(node == null){
             return null;
-        } else if(node.getData().compareTo(element) == 0){ //Caso en el que se ha llegado al elemento deseado
+        } else if(node.getData().compareTo(element) == 0){
             return node;
-        } else if(node.getData().compareTo(element) < 0){ //Si el dato del nodo actual es menor al elemento deseado
-            return this.getElement(element, node.getRight()); //Se continua con el hijo derecho del nodo actual
-        } else{ //El dato del nodo actual es mayor al elemento deseado
-            return this.getElement(element, node.getLeft()); //Se continua con el hijo izquierdo del nodo actual
+        } else if(node.getData().compareTo(element) < 0){
+            return this.getElement(element, node.getRight());
+        } else{
+            return this.getElement(element, node.getLeft());
         }
     }
 
@@ -77,10 +74,10 @@ public class AVLTree<T extends Comparable<T>> {
      * @return El factor de balance del nodo ingresado
      */
     private int getBalanceFactor(AVLNode node){
-        if(node == null){ //Caso en que el nodo es nulo
+        if(node == null){
             return -1;
         } else{
-            return node.getBalanceFactor(); //Se obtiene el factor de balance del nodo
+            return node.getBalanceFactor();
         }
     }
 
@@ -91,12 +88,10 @@ public class AVLTree<T extends Comparable<T>> {
      */
     public AVLNode leftRotation(AVLNode node){
         AVLNode aux = node.getLeft();
-
         node.setLeft(aux.getRight());
         aux.setRight(node);
-        node.setBalanceFactor(Math.max(getBalanceFactor(node.getLeft()), getBalanceFactor(node.getRight())) + 1); //Se calculan los nuevos factores de balance
+        node.setBalanceFactor(Math.max(getBalanceFactor(node.getLeft()), getBalanceFactor(node.getRight())) + 1);
         aux.setBalanceFactor(Math.max(getBalanceFactor(aux.getLeft()), getBalanceFactor(aux.getRight())) + 1);
-
         return aux;
     }
 
@@ -107,12 +102,10 @@ public class AVLTree<T extends Comparable<T>> {
      */
     public AVLNode rightRotation(AVLNode node){
         AVLNode aux = node.getRight();
-
         node.setRight(aux.getLeft());
         aux.setLeft(node);
-        node.setBalanceFactor(Math.max(getBalanceFactor(node.getLeft()), getBalanceFactor(node.getRight())) + 1);  //Se calculan los nuevos factores de balance
+        node.setBalanceFactor(Math.max(getBalanceFactor(node.getLeft()), getBalanceFactor(node.getRight())) + 1);
         aux.setBalanceFactor(Math.max(getBalanceFactor(aux.getLeft()), getBalanceFactor(aux.getRight())) + 1);
-
         return aux;
     }
 
@@ -123,7 +116,6 @@ public class AVLTree<T extends Comparable<T>> {
      */
     public AVLNode doubleLeftRotation(AVLNode node){
         AVLNode aux;
-
         node.setLeft(this.rightRotation(node.getLeft()));
         aux = leftRotation(node);
         return aux;
@@ -136,7 +128,6 @@ public class AVLTree<T extends Comparable<T>> {
      */
     public AVLNode doubleRightRotation(AVLNode node) {
         AVLNode aux;
-
         node.setRight(this.leftRotation(node.getRight()));
         aux = rightRotation(node);
         return aux;
@@ -170,7 +161,7 @@ public class AVLTree<T extends Comparable<T>> {
                 subTree.setLeft(newNode);
             } else{
                 subTree.setLeft(insert(newNode, subTree.getLeft()));
-                if(getBalanceFactor(subTree.getLeft()) - getBalanceFactor(subTree.getRight()) == 2){ //Si el arbol esta desvalanceado
+                if(getBalanceFactor(subTree.getLeft()) - getBalanceFactor(subTree.getRight()) == 2){
                     if(newNode.getData().compareTo(subTree.getLeft().getData()) < 0){
                         newFather = this.leftRotation(subTree);
                     } else{
@@ -191,11 +182,10 @@ public class AVLTree<T extends Comparable<T>> {
                     }
                 }
             }
-        } else{ //Caso en el que el nodo ya esta en el arbol
+        } else{
             System.out.println("BNode3 duplicado");
         }
 
-        //Actualizamos el factor de balance
         if((subTree.getLeft() == null) && (subTree.getRight() != null)){
             subTree.setBalanceFactor(subTree.getRight().getBalanceFactor() + 1);
         } else if((subTree.getRight() == null) && (subTree.getLeft() != null)){
@@ -224,22 +214,22 @@ public class AVLTree<T extends Comparable<T>> {
         if(node == null){
             return null;
         } else{
-            if(node.getData().compareTo(element) < 0){ //Si es menor                         node.getData() < element
+            if(node.getData().compareTo(element) < 0){
                 node.setRight(remove(element, node.getRight()));
-            } else if(node.getData().compareTo(element) > 0){ //Si es mayor                               node.getData() > element
+            } else if(node.getData().compareTo(element) > 0){
                 node.setLeft(remove(element, node.getLeft()));
-            } else if(node.getLeft() == null){ //Caso en el que el nodo no tiene hijo izquierdo
+            } else if(node.getLeft() == null){
                 node = node.getRight();
-            } else if(node.getRight() == null){ //Caso en el que el nodo no tiene hijo izquierdo
+            } else if(node.getRight() == null){
                 node = node.getLeft();
-            } else if(getBalanceFactor(node.getLeft()) > getBalanceFactor(node.getRight())){ //Caso en el que ningun descendiente es nulo
+            } else if(getBalanceFactor(node.getLeft()) > getBalanceFactor(node.getRight())){
                 node = rightRotation(node);
                 node.setLeft(remove(element, node.getLeft()));
             } else{
                 node = leftRotation(node);
                 node.setRight(remove(element, node.getRight()));
             }
-            //Actualizamos el factor de balance
+
             if(node != null){
                 node.setBalanceFactor(getBalanceFactor(node.getLeft()) + getBalanceFactor(node.getRight()));
             }
@@ -251,11 +241,11 @@ public class AVLTree<T extends Comparable<T>> {
      * Metodo para imprimir el arbol en pre-orden
      * @param node
      */
-    public void printPreOrden(AVLNode node){
+    public void printPreOrder(AVLNode node){
         if(node != null){
             System.out.print(node.getData() + ", ");
-            printPreOrden(node.getLeft());
-            printPreOrden(node.getRight());
+            printPreOrder(node.getLeft());
+            printPreOrder(node.getRight());
         }
     }
 
@@ -263,11 +253,11 @@ public class AVLTree<T extends Comparable<T>> {
      * Metodo para imprimir el arbol en orden
      * @param node
      */
-    public void printInOrden(AVLNode node){
+    public void printInOrder(AVLNode node){
         if(node != null){
-            printInOrden(node.getLeft());
+            printInOrder(node.getLeft());
             System.out.print(node.getData() + ", ");
-            printInOrden(node.getRight());
+            printInOrder(node.getRight());
         }
     }
 
@@ -275,10 +265,10 @@ public class AVLTree<T extends Comparable<T>> {
      * Metodo para imprimir el arbol en postorden
      * @param node
      */
-    public void printPostOrden(AVLNode node){
+    public void printPostOrder(AVLNode node){
         if(node != null){
-            printPostOrden(node.getLeft());
-            printPostOrden(node.getRight());
+            printPostOrder(node.getLeft());
+            printPostOrder(node.getRight());
             System.out.print(node.getData() + ", ");
         }
     }

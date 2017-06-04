@@ -1,8 +1,5 @@
 package org.tec.datastructures.SplayTree;
 
-/**
- * Created by Arturo on 8/5/2017.
- */
 public class SplayTree<T extends Comparable> {
     private SplayNode root;
 
@@ -25,7 +22,6 @@ public class SplayTree<T extends Comparable> {
     public boolean contains(T data) {
         return this.contains(data, this.root);
     }
-
 
     /**
      * Metodo recursivo que verifica si un elemento se encuentra dentro del arbol
@@ -53,7 +49,7 @@ public class SplayTree<T extends Comparable> {
      * @return
      */
     public boolean insert(T data) {
-        if (this.root == null) { //Caso en el que el arbol esta vacio
+        if (this.root == null) {
             this.root = new SplayNode(data);
             return true;
         }
@@ -74,7 +70,7 @@ public class SplayTree<T extends Comparable> {
                 node.setLeft(newNode);
                 splay(element);
                 return true;
-            } else { //El hijo izquierdo no esta vacio
+            } else {
                 return insert(element, node.getLeft());
             }
         } else if (node.getData().compareTo(element) < 0) {
@@ -82,32 +78,32 @@ public class SplayTree<T extends Comparable> {
                 node.setRight(newNode);
                 splay(element);
                 return true;
-            } else // El hijo derecho no esta vacio
+            } else
                 return insert(element, node.getRight());
-        } else if (element == node.getData()) ; //Caso en el que el elemento ya esta en el arbol
+        } else if(element == node.getData());
         this.root = splay(element);
         return false;
     }
 
     public boolean remove(T element){
-        if (root == null) { //Caso en el que el arbol esta vacio
+        if (root == null) {
             return false;
         }
 
         SplayNode newTree;
-        splay(element); //Si el elemento es encontrado, se asigna como raiz
+        splay(element);
+
         if (root.getData().compareTo(element) == 0) {
             if (root.getLeft() == null) {
                 root = root.getRight();
-            }
-            else {
+            }else {
                 SplayNode aux = root.getRight();
                 root = root.getLeft();
                 root = splay(root, element);
                 root.setRight(aux);
             }
             return true;
-        } else { //El elemento no estaba en el arbol
+        } else {
             return false;
         }
     }
@@ -122,7 +118,7 @@ public class SplayTree<T extends Comparable> {
 
         if(root.getData().compareTo(element) == 0){
             return this.root;
-        } else{ //Si el elemento no estaba en el arbol se retorna nulo
+        } else{
             return null;
         }
     }
@@ -133,10 +129,10 @@ public class SplayTree<T extends Comparable> {
      * @return El nuevo nodo raiz
      */
     private SplayNode splay(T element){
-        if(this.root != null) { //Caso en el que el arbol no esta vacio
+        if(this.root != null) {
             root = splay(root, element);
             return root;
-        } else{ //Caso en el que el arbol esta vacio
+        } else{
             return null;
         }
     }
@@ -148,16 +144,19 @@ public class SplayTree<T extends Comparable> {
      * @return El nodo correspondiente segun las rotaciones realizadas
      */
     private SplayNode splay(SplayNode node, T element) {
-        if (node == null) return null;
+        if (node == null){
+            return null;
+        }
 
         int cmp1 = element.compareTo(node.getData());
 
         if (cmp1 < 0) {
-            //El elemento no esta en el arbol, por lo tanto el proceso se finaliza
             if (node.getData() == null) {
                 return node;
             }
+
             int cmp2 = element.compareTo(node.getLeft().getData());
+
             if (cmp2 < 0) {
                 node.getLeft().setLeft(splay(node.getLeft().getLeft(), element));
                 node = rotateRight(node);
@@ -174,7 +173,6 @@ public class SplayTree<T extends Comparable> {
         }
 
         else if (cmp1 > 0) {
-            //El elemento no esta en el arbol, por lo tanto el proceso se finaliza
             if (node.getRight() == null) {
                 return node;
             }
@@ -225,11 +223,11 @@ public class SplayTree<T extends Comparable> {
      * Metodo para imprimir el arbol en pre-orden
      * @param node
      */
-    public void printPreOrden(SplayNode node){
+    public void printPreOrder(SplayNode node){
         if(node != null){
             System.out.print(node.getData() + ", ");
-            printPreOrden(node.getLeft());
-            printPreOrden(node.getRight());
+            printPreOrder(node.getLeft());
+            printPreOrder(node.getRight());
         }
     }
 
@@ -237,11 +235,11 @@ public class SplayTree<T extends Comparable> {
      * Metodo para imprimir el arbol en orden
      * @param node
      */
-    public void printInOrden(SplayNode node){
+    public void printInOrder(SplayNode node){
         if(node != null){
-            printInOrden(node.getLeft());
+            printInOrder(node.getLeft());
             System.out.print(node.getData() + ", ");
-            printInOrden(node.getRight());
+            printInOrder(node.getRight());
         }
     }
 
@@ -249,10 +247,10 @@ public class SplayTree<T extends Comparable> {
      * Metodo para imprimir el arbol en postorden
      * @param node
      */
-    public void printPostOrden(SplayNode node){
+    public void printPostOrder(SplayNode node){
         if(node != null){
-            printPostOrden(node.getLeft());
-            printPostOrden(node.getRight());
+            printPostOrder(node.getLeft());
+            printPostOrder(node.getRight());
             System.out.print(node.getData() + ", ");
         }
     }

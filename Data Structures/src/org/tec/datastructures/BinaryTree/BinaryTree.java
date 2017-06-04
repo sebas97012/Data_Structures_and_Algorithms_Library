@@ -1,10 +1,7 @@
 package org.tec.datastructures.BinaryTree;
 
-/**
- * Created by Arturo on 22/4/2017.
- */
 public class BinaryTree<T extends Comparable<T>> {
-    private BinaryNode root; //Raiz del arbol
+    private BinaryNode root;
 
     /**
      * Constructor
@@ -131,11 +128,11 @@ public class BinaryTree<T extends Comparable<T>> {
      * Metodo para imprimir el arbol en pre-orden
      * @param node
      */
-    public void printPreOrden(BinaryNode node){
+    public void printPreOrder(BinaryNode node){
         if(node != null){
             System.out.print(node.getData() + ", ");
-            printPreOrden(node.getLeft());
-            printPreOrden(node.getRight());
+            printPreOrder(node.getLeft());
+            printPreOrder(node.getRight());
         }
     }
 
@@ -143,11 +140,11 @@ public class BinaryTree<T extends Comparable<T>> {
      * Metodo para imprimir el arbol en orden
      * @param node
      */
-    public void printInOrden(BinaryNode node){
+    public void printInOrder(BinaryNode node){
         if(node != null){
-            printInOrden(node.getLeft());
+            printInOrder(node.getLeft());
             System.out.print(node.getData() + ", ");
-            printInOrden(node.getRight());
+            printInOrder(node.getRight());
         }
     }
 
@@ -155,10 +152,10 @@ public class BinaryTree<T extends Comparable<T>> {
      * Metodo para imprimir el arbol en postorden
      * @param node
      */
-    public void printPostOrden(BinaryNode node){
+    public void printPostOrder(BinaryNode node){
         if(node != null){
-            printPostOrden(node.getLeft());
-            printPostOrden(node.getRight());
+            printPostOrder(node.getLeft());
+            printPostOrder(node.getRight());
             System.out.print(node.getData() + ", ");
         }
     }
