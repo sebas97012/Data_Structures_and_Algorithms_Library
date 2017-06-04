@@ -7,7 +7,6 @@ public class AVLNode<T extends Comparable<T>> {
     private AVLNode right;
 
     public AVLNode(){
-    	
     }
     
     public AVLNode(T data){

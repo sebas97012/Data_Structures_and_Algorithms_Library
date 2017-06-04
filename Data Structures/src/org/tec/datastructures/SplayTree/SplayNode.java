@@ -5,20 +5,9 @@ public class SplayNode<T extends Comparable>{
     private SplayNode left;
     private SplayNode right;
 
-    /**
-     * Constructor
-     * @param data Informacion que va a almacenar el nodo
-     */
-    
     public SplayNode(T data){
         this(data, null, null);
     }
-    /**
-     * Constructor
-     * @param data Informacion que va a almacenar el nodo
-     * @param left Hijo izquierdo del nodo
-     * @param right Hijo derecho del nodo
-     */
 
     public SplayNode(T data, SplayNode left, SplayNode right){
         this.data = data;

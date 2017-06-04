@@ -5,25 +5,13 @@ public class BinaryNode<T extends Comparable<T>>{
     private BinaryNode left;
     private BinaryNode right;
 
-    /////////////////////////
     public BinaryNode(){
-    	
     }
-    
-    /**
-     * Constructor
-     * @param data Informacion que va a almacenar el nodo
-     */
+
     public BinaryNode(T data){
         this(data, null, null);
     }
 
-    /**
-     * Constructor
-     * @param data Informacion que va a almacenar el nodo
-     * @param left Hijo izquierdo del nodo
-     * @param right Hijo derecho del nodo
-     */
     public BinaryNode(T data, BinaryNode left, BinaryNode right){
         this.data = data;
         this.left = left;

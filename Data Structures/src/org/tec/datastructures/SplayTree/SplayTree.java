@@ -3,9 +3,6 @@ package org.tec.datastructures.SplayTree;
 public class SplayTree<T extends Comparable> {
     private SplayNode root;
 
-    /**
-     * Constructor
-     */
     public SplayTree() {
         this.root = null;
     }
@@ -13,22 +10,11 @@ public class SplayTree<T extends Comparable> {
     public SplayNode getRoot() {
         return this.root;
     }
-    
-    /**
-     * Metodo que verifica si un elemento se encuentra dentro del arbol
-     * @param data Elemento que se desea verificar si esta dentro del arbol
-     * @return True si se encuentra, false en caso contrario
-     */
+
     public boolean contains(T data) {
         return this.contains(data, this.root);
     }
 
-    /**
-     * Metodo recursivo que verifica si un elemento se encuentra dentro del arbol
-     * @param element Elemento que se desea verificar si esta dentro del arbol
-     * @param node BNode3 actual
-     * @return True si se encuentra, false en caso contrario
-     */
     private boolean contains(T element, SplayNode node){
         if(node == null){ //Si el arbol esta vacio
             return false;
@@ -43,11 +29,6 @@ public class SplayTree<T extends Comparable> {
         }
     }
 
-    /**
-     * Metodo para insertar un nuevo elemento en el arbol
-     * @param data
-     * @return
-     */
     public boolean insert(T data) {
         if (this.root == null) {
             this.root = new SplayNode(data);
@@ -57,12 +38,6 @@ public class SplayTree<T extends Comparable> {
              return this.insert(data, this.root);
     }
 
-    /**
-     * Metodo para insertar un nuevo elemento en el arbol
-     * @param element Dato que se desea insertar
-     * @param node BNode3 actual en el recorrido
-     * @return True si se pudo insertar, false en caso contrario
-     */
     private boolean insert(T element, SplayNode node) {
         SplayNode newNode = new SplayNode(element); //Se crea el nuevo nodo a ser insertado
         if (node.getData().compareTo(element) > 0) {
@@ -108,11 +83,6 @@ public class SplayTree<T extends Comparable> {
         }
     }
 
-    /**
-     * Metodo para obtener un nodo especifico del arbol
-     * @param element Dato del nodo que se quiere obtener
-     * @return El nodo si el dato estaba dentro del arbol, nulo si el dato no estaba en el arbol
-     */
     public SplayNode search(T element) {
         splay(element);
 
@@ -123,11 +93,6 @@ public class SplayTree<T extends Comparable> {
         }
     }
 
-    /**
-     * Metodo que se encarga de llevar un nodo a la raiz del arbol
-     * @param element Dato del nodo que se ha visitado
-     * @return El nuevo nodo raiz
-     */
     private SplayNode splay(T element){
         if(this.root != null) {
             root = splay(root, element);
@@ -137,12 +102,6 @@ public class SplayTree<T extends Comparable> {
         }
     }
 
-    /**
-     * Metodo que se encarga de llevar un nodo a la raiz del arbol
-     * @param node Nodo correspondiente al recorrido
-     * @param element Elemento del nodo que va a ser llevado a la raiz del arbol
-     * @return El nodo correspondiente segun las rotaciones realizadas
-     */
     private SplayNode splay(SplayNode node, T element) {
         if (node == null){
             return null;
@@ -195,11 +154,6 @@ public class SplayTree<T extends Comparable> {
         else return node;
     }
 
-    /**
-     * Rotacion derecha
-     * @param node BNode3 al que se le desea aplicar la rotacion
-     * @return El hijo izquierdo del nodo ingresado
-     */
     private SplayNode rotateRight(SplayNode node){
         SplayNode temp = node.getLeft();
         node.setLeft(temp.getRight());
@@ -207,11 +161,6 @@ public class SplayTree<T extends Comparable> {
         return temp;
     }
 
-    /**
-     * Rotacion izquierda
-     * @param node BNode3 al que se le desea aplicar la rotacion
-     * @return El hijo derecho del nodo ingresado
-     */
     private SplayNode rotateLeft(SplayNode node){
         SplayNode temp = node.getRight();
         node.setRight(temp.getLeft());
@@ -219,10 +168,6 @@ public class SplayTree<T extends Comparable> {
         return temp;
     }
 
-    /**
-     * Metodo para imprimir el arbol en pre-orden
-     * @param node
-     */
     public void printPreOrder(SplayNode node){
         if(node != null){
             System.out.print(node.getData() + ", ");
@@ -231,10 +176,6 @@ public class SplayTree<T extends Comparable> {
         }
     }
 
-    /**
-     * Metodo para imprimir el arbol en orden
-     * @param node
-     */
     public void printInOrder(SplayNode node){
         if(node != null){
             printInOrder(node.getLeft());
@@ -243,10 +184,6 @@ public class SplayTree<T extends Comparable> {
         }
     }
 
-    /**
-     * Metodo para imprimir el arbol en postorden
-     * @param node
-     */
     public void printPostOrder(SplayNode node){
         if(node != null){
             printPostOrder(node.getLeft());
