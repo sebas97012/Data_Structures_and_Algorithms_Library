@@ -32,7 +32,7 @@ public class LinkedList<T extends Comparable<T>>{
      * @param data Dato que se quiere insertar
      */
     public void insertAtFirst(T data) {
-    	Node newNode = new Node<T>(data);
+    	Node newNode = new Node<>(data);
         if (this.first == null) {
             setFirst(newNode);
         } else {

@@ -1,26 +1,26 @@
 package org.tec.datastructures;
-public class ListaDoble<T> {
-	
+
+public class DoubleList<T extends Comparable<T>> {
 	private Node<T> head;
 	private int size;
 	
-	public void doubleLinkedList(){
+	public void DoubleList(){
 		this.head = null;
 		this.size = 0;
 	}
+
 	public Node<T> getHead() 
 	{
 		return this.head;
 	}
 	
-	public void agregarPrimero(T data)
-	{
+	public void addToStart(T data){
 		if (this.head == null){
-			Node<T> nuevo = new Node<T>(data);
-			this.head = nuevo;
+			Node<T> n = new Node<>(data);
+			this.head = n;
 		}
 		else {
-			Node<T> current = new Node<T>(data);
+			Node<T> current = new Node<>(data);
 			current.setNext(head);
 			head.setPrevious(current);
 			head = current;
@@ -28,38 +28,39 @@ public class ListaDoble<T> {
 		}
 	}
 	
-	public void agregarUltimo(T data)
-	{
-		Node<T> ultimo = new Node<T>(data);
+	public void addToEnd(T data){
+		Node<T> last = new Node<>(data);
 		this.size++;
 		Node<T> current = this.head;
+
 		if (head == null)
-			head = ultimo;
-		else
-		{
-			while (current.getNext() != null)
-				current = current.getNext();
-			current.setNext( ultimo );
-			ultimo.setPrevious(current);
+			head = last;
+		else{
+			while (current.getNext() != null)		//¿Falta {}?/////////////////
+			current = current.getNext();
+			current.setNext( last );
+			last.setPrevious(current);
 		}
 	}
 	
-	public void insertar( T data, int pos ){
-		Node<T> nuevo = new Node<T>( data );
+	public void add( T data, int pos){
+		Node<T> n = new Node<>(data);
 		Node<T> current = head;
-		int contador = 1;
-		while (contador != pos){
+		int cont = 1;
+
+		while (cont != pos){
 			current = current.getNext();
-			contador++;
+			cont++;
 		}
-		nuevo.setPrevious(current);
-		nuevo.setNext(current.getNext());
-		current.setNext(nuevo);
-		current.setPrevious(nuevo);
+
+		n.setPrevious(current);
+		n.setNext(current.getNext());
+		current.setNext(n);
+		current.setPrevious(n);
 		this.size++;
 	}
 	
-	public void eliminarPrimero(){
+	public void deleteFirst(){
 		Node<T> current = head;
 		current = current.getNext();
 		head = current;
@@ -67,43 +68,48 @@ public class ListaDoble<T> {
 		size--;
 	}
 	
-	public void eliminarUltimo(){
+	public void deleteLast(){
 		Node<T> current = head;
-		while( current.getNext() != null ){
+		while(current.getNext() != null ){
 			current = current.getNext();
 		}
 		current.getPrevious().setNext(null);
 		size--;
 	}
 	
-	public void eliminarPos(int pos){
+	public void deletePos(int pos){
 		Node<T> current = head;
-		int contador = 0;
-		while (contador != pos){
+		int cont = 0;
+
+		while (cont != pos){
 			current = current.getNext();
-			contador++;
+			cont++;
 		}
+
 		Node<T> aux = current;
 		current.getNext().setPrevious(aux.getPrevious());
 		current.getPrevious().setNext(aux.getNext());
 		this.size++;
 	}
 	
-	public boolean buscarElemento(T data){
+	public boolean search(T data){
 		Node<T> current = head;
+
 		while (current.getNext() != null){
 			if (current.getData() == data){
 					return true;
 			}else{
 				current = current.getNext();
 			}
-		}return false;
+		}
+		return false;
 	}
-	
-	public String toString()
-	{
+
+	//////////////////
+	public String toString(){
 		String datos = "Datos de la lista: \n";
 		Node<T> current = head;
+
 		while( current.getNext() != null )
 		{
 			datos += current.getData() + "\n";
