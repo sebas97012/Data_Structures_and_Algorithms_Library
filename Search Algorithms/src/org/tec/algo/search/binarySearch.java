@@ -6,18 +6,18 @@ public class binarySearch{
     }
 
     private static Comparable binarySearchAux(LinkedList list, Comparable input, int minIndex, int maxIndex){
-        Comparable comparar1 = input;
+        Comparable compare1 = input;
         while(maxIndex >= minIndex){
             int middle = (maxIndex + minIndex)/2;
             Comparable compare= list.getElement(middle).getDataT();
-            if(compare.compareTo(comparar1) < 0){
+            if(compare.compareTo(compare1) < 0){
                 minIndex = middle+1;
-            }else if(compare.compareTo(comparar1) > 0){
+            }else if(compare.compareTo(compare1) > 0){
                 maxIndex = middle-1;
             }else{
-                return list.getElement(middle).getDataT();
+                return 1;
             }
         }
-        return null;
+        return 0;
     }
 }

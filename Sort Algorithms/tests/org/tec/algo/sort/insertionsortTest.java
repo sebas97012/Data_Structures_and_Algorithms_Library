@@ -1,5 +1,7 @@
 package org.tec.algo.sort;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -8,12 +10,23 @@ import static org.junit.Assert.*;
  * Created by sebas97012 on 6/4/17.
  */
 public class insertionsortTest {
-    @Test
-    public void insertionSort() throws Exception {
+    LinkedList TestList = new LinkedList();
+
+    @Before
+    public void setUp() throws Exception {
+        for(int i=0; i<=10; i++){
+            TestList.insertElement((int) (Math.random() * ((200) + 1)), i);
+        }
+        TestList.printList();
     }
 
     @Test
-    public void swap() throws Exception {
+    public void insertionTest() throws Exception {
+        TestList = insertionsort.insertionSort(TestList);
     }
 
+    @After
+    public void insertionTestPrint() throws Exception {
+        TestList.printList();
+    }
 }
