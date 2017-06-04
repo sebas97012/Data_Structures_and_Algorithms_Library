@@ -1,6 +1,6 @@
 package org.tec.datastructures;
 
-public class Graph {
+public class Graph {/*
     private int row;
     private int col;
     private int nodesIn;
@@ -294,5 +294,5 @@ public class Graph {
             }
         }
         return minIndex;
-    }
+    }*/
 }
