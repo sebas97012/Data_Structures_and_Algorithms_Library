@@ -3,6 +3,8 @@ package org.tec.datastructures;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 
 /**
@@ -13,24 +15,20 @@ public class LinkedListTest {
 
     @Before
     public void setUp() throws Exception {
-        for(int i=0; i<=1000; i++){
-            TestList.insertElement((int) (Math.random() * ((1000) + 1)), i);
+        for(int i=0; i<999; i++){
+            TestList.insertElement((int) (Math.random() * ((1000))), i);
         }
-    }
-    @Test
-    public void getFirst() throws Exception {
-        System.out.println(TestList.getFirst().getDataT());
     }
 
     @Test
     public void setFirst() throws Exception {
         TestList.setFirst(new Node<String>("hola"));
-        System.out.println(TestList.getFirst().getDataT());
+          assertEquals(TestList.getFirst().getDataT(),"hola");
     }
 
     @Test
     public void getSize() throws Exception {
-        System.out.println(TestList.getSize());
+        assertEquals(TestList.getSize(),1000);
     }
 
     @Test
@@ -42,6 +40,7 @@ public class LinkedListTest {
     @Test
     public void insertAtEnd() throws Exception {
         TestList.insertAtEnd("Final");
+        assertEquals(TestList.getElement(999).getDataT(),"Final");
     }
 
     @Test

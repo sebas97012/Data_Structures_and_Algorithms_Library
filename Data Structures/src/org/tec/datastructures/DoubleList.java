@@ -107,15 +107,15 @@ public class DoubleList<T extends Comparable<T>> {
 
 	//////////////////
 	public String toString(){
-		String datos = "Datos de la lista: \n";
+		String datos = "Datos de la lista: ";
 		Node<T> current = head;
 
 		while( current.getNext() != null )
 		{
-			datos += current.getDataT() + "\n";
+			datos += current.getDataT() + ",";
 			current = current.getNext();
 		}
-		datos += current.getDataT() + "\n";
+		datos += current.getDataT() + ",";
 		return datos;
 	}
 	

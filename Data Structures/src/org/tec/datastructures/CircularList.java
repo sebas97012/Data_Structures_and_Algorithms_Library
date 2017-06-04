@@ -1,5 +1,6 @@
 package org.tec.datastructures;
 
+@SuppressWarnings("rawtypes")
 public class CircularList<T extends Comparable<T>> {
     private Node<T> start;
     private Node<T> last;
@@ -142,7 +143,7 @@ public class CircularList<T extends Comparable<T>> {
             Node<T> aux = start;
             
             do{
-                System.out.print(aux.getDataT());
+                System.out.print(aux.getDataT()+", ");
                 aux = aux.getNext();
             }while(aux != start);
         }

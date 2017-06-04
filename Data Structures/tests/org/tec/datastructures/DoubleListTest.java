@@ -1,5 +1,6 @@
 package org.tec.datastructures;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -8,6 +9,16 @@ import static org.junit.Assert.*;
  * Created by sebas97012 on 6/4/17.
  */
 public class DoubleListTest {
+    DoubleList DoubleTestList = new DoubleList();
+
+    @Before
+    public void setUp() throws Exception {
+        for(int i=0; i<=1000; i++){
+            DoubleTestList.addToStart((int) (Math.random() * ((1000) + 1)));
+        }
+        System.out.println(DoubleTestList.toString());
+    }
+
     @Test
     public void doubleList() throws Exception {
     }
@@ -43,5 +54,4 @@ public class DoubleListTest {
     @Test
     public void search() throws Exception {
     }
-
 }
