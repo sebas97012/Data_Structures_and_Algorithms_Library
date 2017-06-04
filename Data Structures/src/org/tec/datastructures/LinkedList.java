@@ -1,10 +1,5 @@
 package org.tec.datastructures;
 
-
-/**
- * Clase que implementa el concepto de lista enlazada
- * @param <T> Tipo de datos abstracto
- */
 @SuppressWarnings("rawtypes")
 public class LinkedList<T extends Comparable<T>>{
 	protected Node first;
@@ -27,10 +22,6 @@ public class LinkedList<T extends Comparable<T>>{
         return size;
     }
 
-    /**
-     * Metodo que inserta un nuevo elemento al inicio de la lista
-     * @param data Dato que se quiere insertar
-     */
     public void insertAtFirst(T data) {
     	Node newNode = new Node<>(data);
         if (this.first == null) {
@@ -42,10 +33,6 @@ public class LinkedList<T extends Comparable<T>>{
         size++;
     }
 
-    /**
-     * Metodo que inserta un nuevo elemento al final de la lista
-     * @param data Dato que se quiere insentar
-     */
     public void insertAtEnd(T data) {
         Node newNode = new Node(data);
         if (this.first == null) {
@@ -60,13 +47,6 @@ public class LinkedList<T extends Comparable<T>>{
         size++;
     }
 
-
-
-    /**
-     * Metodo para obtener el elemento de una posicion especifica
-     * @param position Posicion del elemento deseado
-     * @return El elemento deseado
-     */
     public Node getElement(int position){ //El primer elemento de la lista es el elemento número 0
         Node current = this.first;
 
@@ -80,9 +60,7 @@ public class LinkedList<T extends Comparable<T>>{
         return current;
     }
 
-    /**
-     * Metodo que elimina el primer elemento de la lista
-     */
+
     public void deleteFirst() {
         if(this.first != null) {
             this.first = first.getNext();
@@ -90,11 +68,6 @@ public class LinkedList<T extends Comparable<T>>{
         }
     }
 
-    /**
-     * Método que inserta un nuevo elemento en una posición específica
-     * @param data Data del nuevo elemento
-     * @param position Posicion del nuevo elemento
-     */
     public void insertElement(T data, int position){
         Node newNode = new Node(data);
         Node current = this.first;
@@ -118,11 +91,7 @@ public class LinkedList<T extends Comparable<T>>{
         this.size++;
     }
 
-    /**
-     * Metodo que elimina un elemento en una posicion especifica
-     * @param position Posicion del elemento a eliminar
-     */
-    public void deleteElement(int position) {
+    public void deleteElementPos(int position) {
         if (position == 0) {
             this.deleteFirst();
         } else {
@@ -138,10 +107,6 @@ public class LinkedList<T extends Comparable<T>>{
         }
     }
 
-    /**
-     * Metodo que elimina un objeto si este esta dentro de la lista
-     * @param object Objeto a eliminar
-     */
     public void deleteElement(T object){
         Node<T> current = this.first;
 
@@ -163,9 +128,6 @@ public class LinkedList<T extends Comparable<T>>{
         this.size = 0;
     }
 
-    /**
-     * Metodo para imprimir la lista
-     */
     public void printList() {
         Node current = first;
         while (current != null) {
