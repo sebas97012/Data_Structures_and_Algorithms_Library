@@ -12,6 +12,7 @@ public class Queue<T extends Comparable<T>>{
 	public boolean isEmpty(){
 	    return start == null;
 	}
+
 	public int getLength(){
 	    return length;
 	}
