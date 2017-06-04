@@ -14,19 +14,16 @@ public class SelectionSortTest {
 
     @Before
     public void setUp() throws Exception {
-        for(int i=0; i<=10; i++){
+        for(int i=0; i<=50; i++){
             TestList.insertElement((int) (Math.random() * ((200) + 1)), i);
         }
-        TestList.printList();
     }
 
     @Test
-    public void insertionTest() throws Exception {
+    public void SelectionSortTest() throws Exception {
+        TestList.printList();
         TestList = SelectionSort.selectionSort(TestList);
-    }
-
-    @After
-    public void insertionTestPrint() throws Exception {
         TestList.printList();
     }
+
 }

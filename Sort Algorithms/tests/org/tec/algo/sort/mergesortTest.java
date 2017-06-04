@@ -14,19 +14,16 @@ public class mergesortTest {
 
     @Before
     public void setUp() throws Exception {
-        for(int i=0; i<=10; i++){
+        for(int i=0; i<=50; i++){
             TestList.insertElement((int) (Math.random() * ((200) + 1)), i);
         }
-        TestList.printList();
     }
 
     @Test
     public void mergeTest() throws Exception {
+        TestList.printList();
         TestList = mergesort.mergeSort(TestList);
-    }
-
-    @After
-    public void mergeTestPrint() throws Exception {
         TestList.printList();
     }
+
 }

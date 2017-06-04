@@ -8,7 +8,7 @@ public class insertionsort {
 		int j;
 		Comparable key;
 
-		for (j = 1; j < list.getSize(); j++) {
+		for (j = 1; j < list.getSize()-1; j++) {
 			key = list.getElement(j).getDataT();
 		    i = j-1;
 

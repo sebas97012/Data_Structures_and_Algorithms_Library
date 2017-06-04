@@ -3,7 +3,7 @@ package org.tec.algo.sort;
 public class bubblesort {
 	public static LinkedList bubbleSort(LinkedList list){
 		int x = list.getSize();
-		return bubbleSortAux(list,x-1);
+		return bubbleSortAux(list,x-2);
 	}
 	private static LinkedList bubbleSortAux(LinkedList list, int nElements){
     	int in;

@@ -20,11 +20,11 @@ public class binarySearchTest {
 
     @Test
     public void binarySearchFound() throws Exception{
-        System.out.println(binarySearch.binarySearch1(TestList,15));
+        assertEquals(binarySearch.binarySearch1(TestList,15),1);
     }
 
     @Test
     public void binarySearchNotFound() throws Exception{
-        System.out.println(binarySearch.binarySearch1(TestList,14));
+        assertEquals(binarySearch.binarySearch1(TestList,14),0);
     }
 }

@@ -6,7 +6,7 @@ public class mergesort {
         while(temp.getSize() != list.getSize()){
             temp.insertAtFirst(0);
         }
-        return mergeSort(list,temp,0,list.getSize()-1);
+        return mergeSort(list,temp,0,list.getSize()-2);
     }
     private static LinkedList mergeSort(LinkedList list,LinkedList temp,int left, int right){
         if(left < right){

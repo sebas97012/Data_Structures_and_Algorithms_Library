@@ -10,7 +10,7 @@ public class quicksort {
     }
 	public static LinkedList quickSort(LinkedList list) {
 		int x = list.getSize();
-		return quicksortAux(list,0,x-1);
+		return quicksortAux(list,0,x-2);
 	}
 	private static LinkedList quicksortAux(LinkedList list, int low, int high) {
         int i = low;

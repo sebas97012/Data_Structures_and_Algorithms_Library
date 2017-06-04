@@ -3,7 +3,7 @@ package org.tec.datastructures;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import static org.junit.Assert.*;
 
 /**
  * Created by sebas97012 on 6/4/17.
@@ -13,19 +13,20 @@ public class QueueTest {
 
     @Before
     public void setUp() throws Exception {
-        for(int i=0; i<=1000; i++){
+        for(int i=0; i<10; i++){
             TestQueue.enqueue((int) (Math.random() * ((1000) + 1)));
         }
+        TestQueue.printQueue();
     }
 
     @Test
     public void isEmpty() throws Exception {
-        System.out.println(TestQueue.isEmpty());
+        assertEquals(TestQueue.isEmpty(),false);
     }
 
     @Test
     public void getLength() throws Exception {
-        System.out.println(TestQueue.getLength());
+        assertEquals(TestQueue.getLength(),10);
     }
 
     @Test
@@ -53,8 +54,4 @@ public class QueueTest {
         TestQueue.search((int) (Math.random() * ((1000) + 1)));
     }
 
-    @After
-    public void setUp2() throws Exception {
-        TestQueue.printQueue();
-    }
 }

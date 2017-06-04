@@ -38,6 +38,7 @@ public class Queue<T extends Comparable<T>>{
 	        }
 	        aux.setNext(n);
 	    }
+	    length++;
 	}
 
 	//No estoy seguro de si funciona/////////////
