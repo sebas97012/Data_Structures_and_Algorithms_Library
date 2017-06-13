@@ -38,28 +38,6 @@ public class SplayTree<T extends Comparable> {
              return this.insert(data, this.root);
     }
 
-    private boolean insert(T element, SplayNode node) {
-        SplayNode newNode = new SplayNode(element); //Se crea el nuevo nodo a ser insertado
-        if (node.getData().compareTo(element) > 0) {
-            if (node.getLeft() == null) {
-                node.setLeft(newNode);
-                splay(element);
-                return true;
-            } else {
-                return insert(element, node.getLeft());
-            }
-        } else if (node.getData().compareTo(element) < 0) {
-            if (node.getRight() == null) {
-                node.setRight(newNode);
-                splay(element);
-                return true;
-            } else
-                return insert(element, node.getRight());
-        } else if(element == node.getData());
-        this.root = splay(element);
-        return false;
-    }
-
     public boolean remove(T element){
         if (root == null) {
             return false;
@@ -83,6 +61,28 @@ public class SplayTree<T extends Comparable> {
         }
     }
 
+    private boolean insert(T element, SplayNode node) {
+        SplayNode newNode = new SplayNode(element); //Se crea el nuevo nodo a ser insertado
+        if (node.getData().compareTo(element) > 0) {
+            if (node.getLeft() == null) {
+                node.setLeft(newNode);
+                splay(element);
+                return true;
+            } else {
+                return insert(element, node.getLeft());
+            }
+        } else if (node.getData().compareTo(element) < 0) {
+            if (node.getRight() == null) {
+                node.setRight(newNode);
+                splay(element);
+                return true;
+            } else
+                return insert(element, node.getRight());
+        } else if(element == node.getData());
+        this.root = splay(element);
+        return false;
+    }
+    
     public SplayNode search(T element) {
         splay(element);
 
