@@ -14,6 +14,23 @@ public class DoubleList<T extends Comparable<T>> {
 		return this.head;
 	}
 	
+	public void add( T data, int pos){
+		Node<T> n = new Node<>(data);
+		Node<T> current = head;
+		int cont = 1;
+
+		while (cont != pos){
+			current = current.getNext();
+			cont++;
+		}
+
+		n.setPrevious(current);
+		n.setNext(current.getNext());
+		current.setNext(n);
+		current.setPrevious(n);
+		this.size++;
+	}
+	
 	public void addToStart(T data){
 		if (this.head == null){
 			Node<T> n = new Node<>(data);
@@ -36,28 +53,11 @@ public class DoubleList<T extends Comparable<T>> {
 		if (head == null)
 			head = last;
 		else{
-			while (current.getNext() != null)		//¿Falta {}?/////////////////
+			while (current.getNext() != null)
 			current = current.getNext();
 			current.setNext( last );
 			last.setPrevious(current);
 		}
-	}
-	
-	public void add( T data, int pos){
-		Node<T> n = new Node<>(data);
-		Node<T> current = head;
-		int cont = 1;
-
-		while (cont != pos){
-			current = current.getNext();
-			cont++;
-		}
-
-		n.setPrevious(current);
-		n.setNext(current.getNext());
-		current.setNext(n);
-		current.setPrevious(n);
-		this.size++;
 	}
 	
 	public void deleteFirst(){
@@ -104,8 +104,7 @@ public class DoubleList<T extends Comparable<T>> {
 		}
 		return false;
 	}
-
-	//////////////////
+	
 	public String toString(){
 		String datos = "Datos de la lista: ";
 		Node<T> current = head;
@@ -118,6 +117,4 @@ public class DoubleList<T extends Comparable<T>> {
 		datos += current.getDataT() + ",";
 		return datos;
 	}
-	
-
 }
