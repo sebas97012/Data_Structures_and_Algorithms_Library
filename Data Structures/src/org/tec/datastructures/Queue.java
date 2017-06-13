@@ -1,4 +1,5 @@
 package org.tec.datastructures;
+
 @SuppressWarnings("rawtypes")
 public class Queue<T extends Comparable<T>>{
 	private Node<T> start;
@@ -17,13 +18,6 @@ public class Queue<T extends Comparable<T>>{
 	    return length;
 	}
 	
-	public void dequeue(){
-	    if (!isEmpty()) {
-	        start = start.getNext();
-	        length--;
-	    }
-	}
-	
 	public void enqueue(T t){
 	    Node n = new Node<T>(t);
 	    Node<T> aux;
@@ -40,8 +34,14 @@ public class Queue<T extends Comparable<T>>{
 	    }
 	    length++;
 	}
+	
+	public void dequeue(){
+	    if (!isEmpty()) {
+	        start = start.getNext();
+	        length--;
+	    }
+	}
 
-	//No estoy seguro de si funciona/////////////
 	public void pop(){
 		if (!isEmpty()) {
 			start = start.getNext();
