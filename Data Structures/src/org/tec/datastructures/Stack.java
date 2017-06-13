@@ -12,11 +12,7 @@ public class Stack<T extends Comparable<T>>{
     public boolean isEmpty(){
         return start == null;
     }
-
-    public int getLength(){
-        return length;
-    }
- 
+    
     public void push(T ele){
         Node<T> n = new Node<>();
         n.setDataT(ele);
@@ -66,8 +62,13 @@ public class Stack<T extends Comparable<T>>{
         Node<T> aux = start;
 
         while(aux != null){
-            System.out.println("|\t" + aux.getDataT() + "\t|");
+            System.out.println("\t" + aux.getDataT()");
             aux = aux.getNext();
         }
     }
+    
+    public int getLength(){
+        return length;
+    }
+ 
 }
